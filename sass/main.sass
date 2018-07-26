@@ -1,0 +1,787 @@
+@import  url("../css/reset.css");
+
+$light-grey: #d0d0d0;
+$dark-grey: #848484;
+$green: #447c80;
+$white: #fff;
+$regular: OpenSansRegular;
+$italic: OpenSansItalic;
+$light: OpenSansLight;
+$semibold: OpenSansSemibold;
+$bold: OpenSansBold;
+$hover: #ffa018;
+
+/*  -- range style--start  */
+
+$slider-width-number: 312;
+$slider-width: $slider-width-number+px;
+$slider-height: 6px;
+$background-slider: $light-grey;
+$background-filled-slider: $green;
+$thumb-width: 20px;
+$thumb-height: 20px;
+$thumb-radius: 17px;
+$thumb-background: $green;
+$thumb-border: 0px solid $green;
+$shadow-size: -7px;
+$fit-thumb-in-slider: -17px;
+
+@function makelongshadow($color,$size)
+	$val: -7px 0 0 $size $color;
+	@for $i from -8 through -$slider-width-number 
+		$val: $val, $i+px 0 0 $size $color;
+	@return $val;
+
+/*  -- range style--end  */
+
+@font-face
+	font-family: OpenSansRegular
+	src: url('../fonts/OpenSansRegular.eot')
+	src: url('../fonts/OpenSansRegular.eot?#iefix') format("embedded-opentype"),
+	url('../fonts/OpenSansRegular.woff2') format("woff2"),
+	url('../fonts/OpenSansRegular.woff') format("woff"),
+	url('../fonts/OpenSansRegular.ttf') format("truetype")
+@font-face
+	font-family: OpenSansBold
+	src: url('../fonts/OpenSansBold.woff2') format("woff2"),
+	url('../fonts/OpenSansBold.woff') format("woff"),
+	url('../fonts/OpenSansBold.ttf') format("truetype")
+@font-face
+	font-family: OpenSansItalic
+	src: url('../fonts/OpenSansItalic.woff2') format("woff2"),
+	url('../fonts/OpenSansItalic.woff') format("woff"),
+	url('../fonts/OpenSansItalic.ttf') format("truetype")
+@font-face
+	font-family: OpenSansSemibold
+	src: url('../fonts/OpenSansSemibold.woff2') format("woff2"),
+	url('../fonts/OpenSansSemibold.woff') format("woff"),
+	url('../fonts/OpenSansSemibold.ttf') format("truetype")
+@font-face
+	font-family: OpenSansLight
+	src: url('../fonts/OpenSansLight.woff2') format("woff2"),
+	url('../fonts/OpenSansLight.woff') format("woff"),
+	url('../fonts/OpenSansLight.ttf') format("truetype")
+*
+	box-sizing: border-box;
+	outline: none;
+	
+body
+	font-family: OpenSansRegular, Arial, sans-serif;
+.float-right
+	float: right;
+.float-left
+	float: left;
+.hidden
+	overflow: hidden;
+input[type="button"]
+	cursor: pointer;
+.wr
+	/* background: linear-gradient(to right, #5db2b8, #537a86); */
+	width: 100%;
+	height: 100%
+.bg-header
+	background: url(../img/header_bg.png)no-repeat;
+	background-size: cover;
+	background-position: center;
+.bg-job-search
+	background: #fff;
+.bg-categories
+	background: #f9f9f9;
+	width: 100%;
+.bg-reviews
+	background: #f9f9f9;
+.bg-make-your-choice
+	background: url(../img/myc.png);
+	background-size: cover;
+.all-wr
+	max-width: 1170px;
+	height: 100%;
+	margin: 0 auto;
+	padding: 130px 10px;
+	color: $dark-grey;
+	word-wrap: break-word;
+	/* @media(max-width: 1175px) and (min-width: 900px) */
+		/* width: 825px; */
+		/* padding: 130px 30px; */
+	@media(max-width: 480px)
+		max-width: 350px;
+		padding: 50px 30px;
+	@media (min-width: 1024px) and (max-width: 1280px)
+		padding: 100px 130px;
+	h2
+		font: 22px $semibold;
+		margin-bottom: 15px;
+		h3
+			text-transform: capitalize;
+		
+	&>p
+		font-size: 16px;
+		margin-bottom: 45px;
+		line-height: 28px;
+.header-wr
+	padding-top: 30px;
+	padding-bottom: 300px;
+	@media(max-width: 650px)
+		padding-top: 10px;
+		padding-bottom: 100px;
+	@media (min-width: 1024px) and (max-width: 1280px)
+		padding-bottom: 200px;
+header
+	color: white;
+	text-transform: uppercase;
+	margin-bottom: 250px;
+	@media(max-width: 650px)
+		margin-bottom: 100px;
+.logo
+	font: 30px $semibold;
+	@media(max-width: 650px)
+		margin-bottom: 20px;
+		float: right;
+		margin-top: 10px;
+		font-size: 25px;
+.main-nav
+	float: right;
+	text-align: center;
+	font: 14px $semibold;
+	margin-top: 10px;
+	@media(max-width: 650px)
+		float: none;
+		display: inline-block;
+	li
+		float: left;
+		display: inline-block;
+		margin-right: 30px;
+		@media(max-width: 650px)
+			display: block;
+			float: none;
+			text-align: left;
+			margin-bottom: 10px;
+		&:last-child
+			margin-right: 0px;
+		&:hover
+			border-bottom: 2px solid #ffffff;
+			padding-bottom: 3px;
+	a
+		text-decoration: none;
+		color: white;
+		position: relative;
+.home a
+	width: 15px;
+	height: 14px;
+	background: url(../img/home_icon.png) 0 1px no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+.drop-down
+	padding-right: 20px
+.drop-down::after
+	content: '';
+	position: absolute;
+	background: url(../img/down_icon.png) no-repeat 10px 7px;
+	padding: 10px;
+.slide1
+		text-transform: capitalize;
+		color: white;
+		h1
+			font: 60px $bold;
+			margin-bottom: 20px;
+			@media(max-width: 650px)
+				font-size: 30px;
+		p
+			font: 22px $italic;
+			margin-bottom: 35px;
+			span
+				font: 22px OpenSansItalic;
+.button
+	color: white;
+	height: 66px;
+	border: 2px solid white;
+	border-radius: 35px;
+	text-transform: capitalize;
+	padding: 23px 47px;
+	box-sizing: padding-box;
+	text-align: center;
+	font-size: 16px;
+	background: transparent;
+	&:hover
+		background-color: $hover;
+		border-color: $hover;
+.post-button
+	border-color: white;
+	color:  white;
+	background-color: transparent;
+	display: inline-block;
+	a
+		color: white;
+		font-size: 16px;
+.search-button
+	color: $white;
+	display: inline-block;
+	margin-left: 27px;
+	.b-search
+		background: url('../img/search_icon.png') no-repeat 52px 24px $green;
+		border: 1px solid $green;
+		padding-left: 70px;
+		width: 208px
+		&:hover
+			background-color: $hover;
+			border-color: $hover;
+.job-search-wr
+	background: white;
+	color: $dark-grey;
+	text-transform: capitalize;
+	overflow: hidden;
+	label
+		font-size: 18px;
+		vertical-align: middle;
+		display: inline-block;
+.form-search-wr
+	div
+		margin-bottom: 30px;
+	ul
+		margin-bottom: 50px;
+.search
+	display: inline-block;
+	width: 258px;
+	height: 63px;
+	&:not(:first-child)
+		margin-left: 27px;
+	@media(max-width: 650px)
+		margin: 0 auto
+		margin-bottom: 10px;
+		width: 290px;
+		&:not(:first-child)
+			margin-left: 0;
+	@media (min-width: 1024px) and (max-width: 1280px)
+		width: 320px;
+		&:nth-child(3n)
+			margin-left: 0;
+		
+.wide-input
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 2px solid $light-grey;
+	border-radius: 7px;
+	padding: 24px 20px;
+	font: 18px OpenSansRegular;
+	&::placeholder
+		color: $light-grey;
+.category-select
+	position: relative;
+.category-select-input
+	padding-right: 40px;
+	&::placeholder
+		color: $dark-grey
+.category-input-icon
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	&::after
+		content: '';
+		background: url('../img/grey_down_icon.png') no-repeat 90% 26px;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		
+.region
+	position: relative;
+	width: 320px;
+	@media(max-width: 650px)
+		width: 290px;
+.region-input
+	padding-right: 35px;
+.region-inpyt-icon
+	position: absolute;
+	
+	width: 100%;
+	heigt: 100%;
+.region-input-icon::after
+	content: '';
+	background: url('../img/location_icon.png') no-repeat 290px 20px;
+	padding-right: 10px;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	@media(max-width: 650px)
+		background: url('../img/location_icon.png') no-repeat 260px 20px;
+	
+.job-search-wr ul
+	margin-bottom: 50px;
+	li
+		display: inline-block;
+		margin-right: 30px;
+.checkbox-input
+	position: relative;
+	input[type="checkbox"]
+		position: absolute;
+		opacity: 0;
+		width: 26px;
+		height: 24px;
+.checkbox-style::after
+	content: '';
+	display: inline-block;
+	height: 24px;
+	width: 26px;
+	border: 2px solid $light-grey;
+	border-radius: 7px;
+.checkbox-input input[type="checkbox"]:checked+label::after
+	background: url(../img/grey_down_icon.png) no-repeat 6px 9px;
+input[type='range']
+	width: 312px;
+	margin: 7px 0;
+	-webkit-appearance: none;
+	border-radius: 20px;
+	background-color: &light-grey;
+	overflow: hidden;
+	min-height: 20px;
+	vertical-align: middle;
+input[type='range']::-webkit-slider-runnable-track
+	height: 6px;
+	cursor: pointer;
+	-webkit-appearance: none;
+	background-color: $light-grey;
+	pointer-events: none;
+	border-radius: 20px;
+input[type='range']::-webkit-slider-thumb
+	border: 0px solid $green;
+	border-radius: 17px
+	width: 20px;
+	-webkit-appearance: none;
+	height: 20px;
+	cursor: pointer;
+	border-radius: 17px;
+	background: $green;
+	margin-top: -7px;
+	box-shadow: makelongshadow($green, $shadow-size);
+input[type='range']
+    &::-moz-range-progress
+      background-color: $green
+    &::-moz-range-track
+      background-color: #d0d0d0
+    &::-ms-fill-lower
+      background-color: #43e5f7
+    &::-ms-fill-upper
+      background-color: #9a905d
+.recent-jobs-wr
+	width: 554px;
+	margin-right: 30px;
+	float: left;
+	@media (max-width: 1280px)
+		float: none;
+		margin: 0 auto;
+		text-align: center;
+	@media(max-width: 650px)
+		max-width: 290px;
+		margin: 0 auto;
+.job
+	padding: 22px;
+	box-shadow: 0 0 5px rgba(208, 208, 208,0.5);
+	font: 14px $regular;
+	color: $dark-grey;
+	min-height: 100px;
+	margin-bottom: 30px
+	@media(max-width: 650px)
+		width: 290px;
+		margin-bottom: 20px;
+.jobs-box
+	padding-left: 3px;
+.job-company-logo
+	width: 60px;
+	height: 60px;
+	margin-right: 22px;
+	display: inline-block;
+.company-logo-link
+	background: url(../img/google_logo.png) no-repeat;
+	width: 100%;
+	height: 100%;
+	display: block;
+.job-company-vacation
+	display: inline-block;
+	margin-right: 20px;
+	@media(max-width: 650px)
+		margin-right: 10px;
+		margin-top: 20px;
+	a
+		color: $green;
+		font: 18px $semibold;
+		@media(max-width: 650px)
+			font-size: 16px;
+.time-posted
+	font-size: 12px;
+.job-company-name
+	padding-right: 10px;
+	border-right: 1px solid $light-grey;
+	display: inline-block;
+	margin-right: 5px;
+	display: inline-block;
+.job-company-location
+	display: inline-block;
+	padding-left: 17px;
+	background: url(../img/small_location_icon.png) no-repeat;
+.company-information
+	margin-top: 20px;
+	a
+		color: $light-grey;
+.right-side
+	width: 110px;
+	height: 100%;
+	div
+		text-align: right;
+.working-hours
+	color: white;
+	margin-bottom: 23px;
+.job-reply a
+	color: $dark-grey
+	border-bottom: 1px solid $dark-grey;
+.full-time::before
+	content: 'Full-Time';
+	width: 70px;
+	border: 1px solid $dark-grey;
+	background: $green;
+	padding: 3px 10px;
+	border-radius: 7px;
+.urgent::before
+	content: 'Urgent';
+	border: 1px solid #da4864;
+	background: #da4864;
+	padding: 3px 10px;
+	border-radius: 7px;
+.freelance::before
+	content: 'Freelance';
+	border: 1px solid #ffa018;
+	background: #ffa018;
+	padding: 3px 10px;
+	border-radius: 7px;
+.companies-wr
+	float: right;
+	@media (max-width: 1280px)
+		float: none;
+		margin: 0 auto;
+		text-align: center;
+	@media (max-width: 650px)
+		float: none;
+.companies-box
+	max-width: 554px;
+	margin: 0 auto;
+.company
+	width: 260px;
+	display: inline-block;
+	height: 147px;
+	border-radius: 7px;
+	margin-bottom: 33px;
+	background: url(../img/company_bg1.png) no-repeat;
+	@media (max-width: 650px)
+		margin: 0 auto;
+		margin-top: 20px;
+		display: block;
+		width: 260px;
+	&:nth-of-type(2n)
+		margin-left: 28px;
+		@media (max-width: 650px)
+			margin: 0 auto;
+			margin-top: 20px;
+.company-profile
+	background: url(../img/dribbble-logo.png) no-repeat 50%;
+	width: 100%;
+	height: 100%;
+	display: block;
+.bg-categories
+	background: url(../img/categories_bg.png) no-repeat;
+	background-size: cover;
+.categories-box
+	overflow: hidden;
+.category
+	background: white;
+	max-width: 360px;
+	min-height: 160px;
+	border-radius: 7px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	float: left;
+	padding: 20px;
+	@media (max-width: 650px)
+		margin: 0 auto;
+		margin-bottom: 20px;
+		float: none;
+	p
+		overflow: hidden;
+		word-wrap: break-word;
+		max-height: 48px;
+		line-height: 24px;
+	.c-icon
+		position: relative;
+		width: 50px;
+		height: 50px;
+		display: inline-block;
+		vertical-align: middle;
+	.c-icon::after
+		position: absolute;
+		content: '';
+		width: 50px;
+		height: 50px;
+		background: url(../img/account_icon.png) no-repeat;
+	h3
+		margin-bottom: 20px;
+	a
+		color: $green;
+		font: 20px $regular;
+.category-img-icon
+	display: inline;
+	width: 60px;
+	height: 60px;
+.freelancers-wr
+	overflow: hidden;
+.freelancer
+	float: left;
+	width: 160px;
+	margin-bottom: 30px;
+	margin-right: 30px;
+	min-height: 200px;
+	border-radius: 7px;
+	box-shadow: 0 0 5px rgba(208, 208, 208,0.5);
+	padding: 10px;
+	@media (max-width: 650px)
+		margin: 20px auto;
+		float: none;
+		display: block;
+	div
+		text-align: center;
+		margin-top: 20px;
+		color: #979797;
+		text-transform: capitalize;
+.freelancer-photo
+	width: 100px;
+	height: 100px;
+	background-color: $light-grey;
+	border-radius: 50%;
+	background: url(../img/avarar1_pic.jpg) no-repeat;
+	margin: 0 auto;
+.freelancer-name
+	font-size: 18px;
+.freelancer-prof
+	font-size: 12px;
+	margin-bottom: 10px
+.reviews-wr
+	background-color: #f9f9f9;
+	background: url(../img/Map.png) no-repeat;
+	background-size: contain;
+	background-position: center center;
+	text-align: center;
+.review
+	display: inline-block;
+	margin-top: 106px;
+	max-width: 365px;
+	position: relative;
+	padding: 20px;
+	margin-right: 20px;
+	min-height: 365px;
+	background: white;
+	text-align: center;
+	color: #979797;
+	border-radius: 7px;
+	box-shadow:  0 0 5px rgba(208, 208, 208,0.5);
+	padding-top: 110px;
+	@media (max-width: 650px)
+		margin: 106px auto 20px;
+	p
+		font-size: 14px;
+		line-height: 22px;
+.reviewer-photo
+	position: absolute;
+	background: url(../img/Photo.png) no-repeat;
+	width: 134px;
+	height: 125px;
+	left: 50%;
+	top: -16%;
+	margin-left: -67px;
+	border-radius: 7px;
+.reviewer-name
+	font: 14px $semibold;
+	margin-bottom: 20px;
+	span
+		font-size: 20px;
+.rate
+	position: relative;
+	width: 165px;
+	margin: 30px auto 20px;
+	overflow: hidden;
+	height: 22px;
+	input
+		opacity: 0;
+		width: 25px;
+		height: 23px;
+		position: absolute;
+		top: 0;
+		z-index: 0;
+		&:checked~label
+			background-position: 0 -30px;
+			height: 23px;
+			width: 25px;
+	label
+		background-position: 0 0;
+		height: 23px;
+		width: 25px;
+		float: right;
+		margin-right: 10px;
+		z-index: 1;
+		&:first-of-type
+			margin-right: 0;
+.rate #star-0
+	left: 0px;
+	&:checked
+		mar
+.rate #star-1
+	left: 33px;
+.rate #star-2
+	left: 66px;
+.rate #star-3
+	left: 99px;
+.rate #star-4
+	left: 135px;
+.rate input:checked~label
+	background: url('../img/star1.png');
+.video-posting
+	margin-right: 30px;
+	@media (max-width: 650px)
+		margin: 20px auto;
+.news-wr>div
+	display: inline-block;
+.news-description
+	margin-top: 25px;
+	padding: 25px 20px;
+	height: 214px;
+	max-width: 290px;
+	box-shadow:  0 0 5px rgba(208, 208, 208,0.5);
+	margin-left: 255px;
+	@media (max-width: 650px)
+		margin: 250px auto 20px;
+		position: relative;
+	h3
+		font: 16px $semibold;
+		line-height: 28px;
+		color: #6b6b6c
+		margin-bottom: 20px;
+		text-transform: capitalize;
+	ul
+		color: #82828a;
+		margin-bottom: 15px;
+		overflow: hidden;
+		font-size: 12px
+		li
+			float: left;
+			&:not(:last-child)
+				padding-right: 10px
+			&:not(:first-child)
+				padding-left: 10px;
+				border-left: 1px solid #e4e4e4;
+	p
+		color: #b8b8c6;
+		line-height: 22px;
+		font-size: 13px;
+		max-height: 66px;
+		overflow: hidden;
+.news-content
+	width: 265px;
+	height: 263px;
+	border-radius: 7px;
+	background: $green;
+	position: absolute;
+	z-index: 2;
+	@media (max-width: 650px)
+		right: 66px;
+	iframe
+		border-radius: 7px;
+	img
+		border-radius: 7px;
+		position: relative;
+		bottom: 5px;
+		right: 5px;
+.like-box
+	width: 34px;
+	height: 32px;
+	border-radius: 7px;
+	background-color: rgba(110,110,110,.7);
+	position: absolute;
+	top: 22px;
+	right: 22px;
+.like-box::after
+	content: '';
+	background: url(../img/icon_love.png) no-repeat;
+	position: absolute;
+	width: 34px;
+	height: 32px;
+	top: 10px;
+	left: 9px;
+	cursor: pointer;
+.like-box:hover
+	background-color: rgb(110,110,110);
+
+.make-your-choice
+	color: white;
+	text-align: center;
+	text-transform: capitalize;
+	span
+		margin: 0 20px;
+		font-size: 18px;
+		@media (max-width: 650px)
+			display: block;
+			margin: 20px 0;
+p.big-text 
+	font: 40px $semibold;
+	@media (max-width: 650px)
+		font-size: 25px;
+p.small-text
+	font-size: 20px;
+	margin: 50px 0;
+	@media (max-width: 650px)
+		font-size: 16px;
+footer
+	color: #b2b2b2;
+	li
+		margin-top: 20px;
+		a
+			color: #b2b2b2;
+			font-size: 17px;
+			text-transform: capitalize;
+	p
+		font-size: 16px;
+		line-height: 27px;
+footer>div
+	display: inline-block;
+	vertical-align: top;
+	@media (max-width: 650px)
+		display: block;
+	h2
+		color: $dark-grey;
+.footer-logo-wr
+	max-width: 440px
+.footer-logo
+	font: 46px $bold;
+	color: $green;
+	margin-bottom: 50px;
+.useful-links
+	margin: 0 130px;
+	max-width: 285px;
+	@media (max-width: 650px)
+		margin: 20px auto;
+	ul li
+		@media (max-width: 650px)
+			display: block;
+			float: none;
+		a:hover
+			color: $hover;
+.trending-jobs
+	max-width: 285px;
+	a:hover
+		color: $hover;
+.copyright
+	display: block
+	margin-top: 45px;
+	text-align: center;
+	padding-top: 45px;
+	border-top: 2px solid #efefef;
+	margin-bottom: -85px;
+	@media (max-width: 650px)
+		padding: 20px 0;
